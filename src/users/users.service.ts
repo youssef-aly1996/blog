@@ -47,7 +47,7 @@ export class UsersServiceMongo {
     return await this.userModel.findById(_id).exec();
   }
 
-  async deleteById(_id: string) {
+  async deleteById(_id: string): Promise<UserDocument> {
     return await this.userModel.findByIdAndDelete(_id).exec();
   }
 }

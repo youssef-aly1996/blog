@@ -7,5 +7,5 @@ export interface IUserService {
   create(userEntity: UserEntity): Promise<any>;
   getByUsername(user: GetUserByUsernameDto): Promise<UserDocument>;
   getById(_id: string): Promise<UserDocument>;
-  deleteById(_id: string);
+  deleteById(_id: string): Promise<UserDocument>;
 }

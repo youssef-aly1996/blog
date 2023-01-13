@@ -10,6 +10,7 @@ import {
   Param,
   Get,
   Inject,
+  Delete,
 } from '@nestjs/common';
 
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -50,6 +51,16 @@ export class UserController {
   async getUser(@Param('id', new ParseStringPipe()) id: string) {
     try {
       return await this.userService.getById(id);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
+
+  @UseGuards(JWTAuthGuard)
+  @Delete(':id')
+  async deleteUser(@Param('id', new ParseStringPipe()) id: string) {
+    try {
+      return await this.userService.deleteById(id);
     } catch (error) {
       throw new BadRequestException(error);
     }
