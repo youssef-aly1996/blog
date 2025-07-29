@@ -14,9 +14,11 @@ export class UsersServiceMongo {
   ) {}
 
   async getByEmail(email: string): Promise<UserDocument> {
-    return await this.userModel.findOne({
-      email,
-    });
+    return await this.userModel
+      .findOne({
+        email,
+      })
+      .exec();
   }
 
   async create(userEntity: UserEntity): Promise<any> {
