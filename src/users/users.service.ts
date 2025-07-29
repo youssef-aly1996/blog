@@ -1,11 +1,10 @@
-import { UserEntity } from './user.entity';
-import { GetUserByUsernameDto } from './dtos/get-user-byUsername.dto';
-import { User } from './user.schema';
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserDocument } from './user.schema';
+import { Model } from 'mongoose';
+import { GetUserByUsernameDto } from './dtos/get-user-byUsername.dto';
 import { UserPasswordService } from './user-password.service';
+import { UserEntity } from './user.entity';
+import { User, UserDocument } from './user.schema';
 
 @Injectable()
 export class UsersServiceMongo {
@@ -28,8 +27,7 @@ export class UsersServiceMongo {
     createUser.password = await this.userPasswordService.hash(
       createUser.password,
     );
-    createUser.save();
-
+    await createUser.save();
     return {
       id: createUser._id,
     };
