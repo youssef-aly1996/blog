@@ -14,6 +14,7 @@ export class UsersServiceMongo {
   ) {}
 
   async getByEmail(email: string): Promise<UserDocument> {
+    console.log({ email });
     return await this.userModel.findOne({
       email,
     });
